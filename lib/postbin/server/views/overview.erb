@@ -1,0 +1,45 @@
+<!-- FIXME: replace with some async javascript magic and make pretty -->
+
+<h3>URLs &amp; Hits</h3>
+
+<table border="1">
+  <tr>
+    <th >Total Hits</th>
+    <th>URL</th>
+  </tr>
+  <% if @url_hits.empty? %>
+    <tr>
+      <td colspan="2"><em>No urls &amp; hits to display.</em></td>
+    </tr>
+  <% else %>
+    <% @url_hits.each do |url, hits| %>
+    <tr>
+      <td><%= hits %></td>
+      <td><%= url %></td>
+    </tr>
+    <% end %>
+  <% end %>
+</table>
+
+<hr>
+
+<h3>Recent Post Requests</h3>
+
+<% if @url_posts.empty? %>
+  <em>No post requests to display.</em>
+<% else %>
+  <% @url_posts.each_pair do |url, posts| %>
+    <strong>URL:</strong> <%= url %><br /><br />
+    <div style="padding-left: 40px;">
+      <% posts.each do |post| %>
+        <strong>TIMESTAMP</strong>
+        <pre><%= post.received_at %></pre>
+        <strong>HEADERS</strong>
+        <pre><%= post.headers.join("\n") %></pre>
+        <strong>BODY</strong>
+        <pre><%= post.body %></pre>
+        <hr>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
