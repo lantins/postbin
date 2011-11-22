@@ -24,9 +24,12 @@ You can run a more permeant install by running PostBin as a Rack application:
 
     # example config.ru
     require 'postbin'
+
     # path of pstore file to use for storage.
     pstore = File.expand_path(File.join(File.dirname(__FILE__), 'postbin.pstore'))
+
     # start the server.
+    PostBin::Server.set :pstore_file, pstore
     run PostBin::Server.new(pstore)
 
 Command Line Options
