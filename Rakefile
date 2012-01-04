@@ -7,6 +7,7 @@ task :default => 'test:unit'
 namespace :test do
   # unit tests.
   Rake::TestTask.new(:unit) do |task|
+    task.libs << 'test'
     task.test_files = FileList['test/**/*_test.rb']
     task.verbose = true
   end

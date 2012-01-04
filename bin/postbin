@@ -1,35 +1,13 @@
 #!/usr/bin/env ruby
 
-# --- use local code if possible, otherwise use gem --------------------------
-begin
-  require 'postbin'
-rescue LoadError => err
-  require 'rubygems'
-  path = ::File.dirname(::File.expand_path(__FILE__))
-  $LOAD_PATH.unshift path + '/../lib' if File.directory?(path) && !$LOAD_PATH.include?(path)
-  require 'postbin'
-end
+# DEVELOPMENT NOTE
+# To run this executiable using the local code add ./lib/ to your ruby load path:
+# 
+#     ruby -Ilib bin/postbin
+#
 
-# --- cli option parsing -----------------------------------------------------
-require 'optparse'
+require 'rubygems' unless defined?(Gem)
+require 'postbin'
 
-# default options.
-options = { :bind => '127.0.0.1', :port => 6969, :server => 'thin', :enviroment => :production }
-
-# available options.
-opts = OptionParser.new('', 24, '  ') do |opts|
-  opts.banner = 'Usage: postbin [options]'
-  opts.separator ''
-  opts.separator 'PostBin options:'
-  opts.on('-v', '--version', 'show version number') { puts 'PostBin ' + PostBin::Version; exit }
-  opts.on('-h', '--help', 'show this message') { puts opts; exit; }
-  opts.separator ''
-  opts.separator 'Rack options:'
-  opts.on('-s', '--server SERVER', 'server (webrick, mongrel, thin, etc.)') { |s| options[:server] = s }
-  opts.on('-a', '--address HOST', 'listen on HOST address (default: 127.0.0.1)') { |host| options[:bind] = host }
-  opts.on('-p', '--port PORT', 'use PORT number (default: 6969)') { |port| options[:port] = port }
-end.parse!
-
-# --- start sinatra server ---------------------------------------------------
-puts "== Starting PostBin on http://#{options[:bind]}:#{options[:port]}"
-PostBin::Server.run!(options)
+# run command line instance of application
+PostBin::Server.run_command_line!(ARGV)

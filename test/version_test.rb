@@ -1,4 +1,4 @@
-require_relative 'test_helper'
+require 'test_helper'
 
 class TestVersion < MiniTest::Unit::TestCase
   def test_should_have_a_version

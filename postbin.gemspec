@@ -17,6 +17,7 @@ spec = Gem::Specification.new do |s|
   s.default_executable  = 'postbin'
 
   s.add_dependency('sinatra')
+  s.add_dependency('yajl-ruby')
   s.add_development_dependency('rake')
   s.add_development_dependency('yard')
   s.add_development_dependency('minitest')

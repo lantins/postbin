@@ -1,3 +1,4 @@
+require 'rubygems' unless defined?(Gem)
 #
 # Test helper init script.
 #
@@ -16,7 +17,7 @@ require 'minitest/pride'
 require 'rack/test'
 
 # load postbin lib.
-require_relative './../lib/postbin'
+require 'postbin'
 
 # extend main TestCase
 class MiniTest::Unit::TestCase

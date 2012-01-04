@@ -6,6 +6,7 @@ module PostBin
     def initialize(pstore_file)
       # setup file database for storage.
       @db = PStore.new(pstore_file)
+      @db.ultra_safe = true if @db.respond_to?(:ultra_safe)
     end
 
     # Store a post in the database.
@@ -20,6 +21,7 @@ module PostBin
         # store post.
         @db[url] << post
       end
+      true
     end
 
     # Returns hash, key being url and value being number of posts received.

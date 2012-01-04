@@ -8,7 +8,7 @@ module PostBin
     set :static, true
 
     # by default we store in a temp file.
-    set :pstore_file, Tempfile.new(['postbin', 'pstore'])
+    set :pstore_file, Tempfile.new(['postbin', 'pstore']).path
 
     # Redirect lost users.
     get '/?' do;         redirect '/postbin/overview'; end
@@ -34,7 +34,7 @@ module PostBin
       storage = PostBin::Storage.new(settings.pstore_file)
 
       content_type :json
-      storage.hits.to_json
+      Yajl::Encoder.encode(storage.hits)
     end
 
     # Display posts for the given URL as JSON.
@@ -43,7 +43,7 @@ module PostBin
       storage = PostBin::Storage.new(settings.pstore_file)
 
       content_type :json
-      storage.posts(url).to_json
+      Yajl::Encoder.encode(storage.posts(url))
     end
 
     # Catch all for post requests.
@@ -54,14 +54,43 @@ module PostBin
       status 201
     end
 
+    # Runs a server on local machine, called by command line executable.
+    def self.run_command_line!(argv)
+      options = parse_args(argv)
+      $stderr.puts "== Starting PostBin on http://#{options[:bind]}:#{options[:port]}"
+      run!(options)
+    end
+
+    # Parse command line args.
+    def self.parse_args(argv)
+      # default options.
+      options = { :bind => '127.0.0.1', :port => 6969, :server => 'thin', :enviroment => :production }
+
+      # available options.
+      opts = OptionParser.new('', 24, '  ') do |opts|
+        opts.banner = 'Usage: postbin [options]'
+        opts.separator ''
+        opts.separator 'PostBin options:'
+        opts.on('-v', '--version', 'show version number') { $stderr.puts 'PostBin ' + PostBin::Version; exit }
+        opts.on('-h', '--help', 'show this message') { $stderr.puts opts; exit; }
+        opts.separator ''
+        opts.separator 'Rack options:'
+        opts.on('-s', '--server SERVER', 'server (webrick, mongrel, thin, etc.)') { |s| options[:server] = s }
+        opts.on('-a', '--address HOST', 'listen on HOST address (default: 127.0.0.1)') { |host| options[:bind] = host }
+        opts.on('-p', '--port PORT', 'use PORT number (default: 6969)') { |port| options[:port] = port }
+      end.parse!(argv)
+
+      options
+    end
+
     private
     # Returns an array of all client side HTTP request headers.
     def client_request_headers
       # POST /some/url HTTP/1.1
       # Accept: application/json
       # Content-Type: application/json
-      headers = request.env.select { |k,v| k.start_with? 'HTTP_' }
-        .collect { |pair| [ pair[0].sub(/^HTTP_/, ''), pair[1] ] }
+      headers = request.env.select { |k,v| k.start_with? 'HTTP_' } \
+        .collect { |pair| [ pair[0].sub(/^HTTP_/, ''), pair[1] ] } \
         .collect { |pair| pair.join(': ') }
 
       headers

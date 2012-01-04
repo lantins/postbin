@@ -1,10 +1,10 @@
-require_relative 'test_helper'
+require 'test_helper'
 
 class TestServer < MiniTest::Unit::TestCase
   def app
     PostBin::Server.new
     # use a new pstore file for each request.
-    PostBin::Server.set :pstore_file, Tempfile.new(['postbin', 'pstore'])
+    PostBin::Server.set :pstore_file, Tempfile.new(['postbin', 'pstore']).path
   end
 
   def test_roots_should_redirect_to_overview
@@ -54,7 +54,7 @@ class TestServer < MiniTest::Unit::TestCase
 
     # read it back.
     get '/postbin/posts/cats'
-    post = JSON.parse(last_response.body)[0]
+    post = Yajl::Parser.parse(last_response.body)[0]
     assert_equal 'they miaow', post['body']
   end
 
