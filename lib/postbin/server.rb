@@ -34,7 +34,7 @@ module PostBin
       storage = PostBin::Storage.new(settings.pstore_file)
 
       content_type :json
-      Yajl::Encoder.encode(storage.hits)
+      MultiJson.encode(storage.hits)
     end
 
     # Display posts for the given URL as JSON.
@@ -43,7 +43,7 @@ module PostBin
       storage = PostBin::Storage.new(settings.pstore_file)
 
       content_type :json
-      Yajl::Encoder.encode(storage.posts(url))
+      MultiJson.encode(storage.posts(url))
     end
 
     # Catch all for post requests.

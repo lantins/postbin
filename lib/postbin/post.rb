@@ -18,8 +18,8 @@ module PostBin
       body == other.body
     end
 
-    def to_json
-      Yajl::Encoder.encode({ :received_at => received_at, :headers => headers, :body => body })
+    def to_json(*options)
+      MultiJson.encode({ :received_at => received_at, :headers => headers, :body => body })
     end
 
   end

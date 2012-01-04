@@ -1,6 +1,6 @@
 require 'optparse'
 require 'pstore'
-require 'yajl'
+require 'multi_json'
 require 'sinatra/base'
 
 require 'postbin/post'

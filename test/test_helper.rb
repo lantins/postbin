@@ -1,25 +1,33 @@
-require 'rubygems' unless defined?(Gem)
 #
 # Test helper init script.
 #
-require 'simplecov'
 
-# code coverage groups.
-SimpleCov.start do
-  add_filter 'test/'
+# --- load rubygems if needed ------------------------------------------------
+require 'rubygems' unless defined?(Gem)
+
+# --- load simplecov if the gem is installed ---------------------------------
+begin
+  require 'simplecov'
+
+  # code coverage groups.
+  SimpleCov.start do
+    add_filter 'test/'
+  end
+rescue LoadError
+  # dont run code coverage if gem isn't installed.
 end
 
-# load our dependencies using bundler.
+# --- load our dependencies using bundler ------------------------------------
 require 'bundler/setup'
 Bundler.setup
 require 'minitest/autorun'
 require 'minitest/pride'
 require 'rack/test'
 
-# load postbin lib.
+# --- load postbin lib -------------------------------------------------------
 require 'postbin'
 
-# extend main TestCase
+# --- extend main TestCase ---------------------------------------------------
 class MiniTest::Unit::TestCase
   include Rack::Test::Methods
 end

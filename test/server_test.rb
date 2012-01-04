@@ -54,7 +54,7 @@ class TestServer < MiniTest::Unit::TestCase
 
     # read it back.
     get '/postbin/posts/cats'
-    post = Yajl::Parser.parse(last_response.body)[0]
+    post = MultiJson.decode(last_response.body)[0]
     assert_equal 'they miaow', post['body']
   end
 
