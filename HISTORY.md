@@ -1,4 +1,4 @@
-## HEAD
+## 0.1.6 (2012-01-04)
 
 * Added support for Ruby 1.8.7
 * Let rubygems deal with $LOAD_PATH
