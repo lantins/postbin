@@ -6,7 +6,7 @@ PostBin, a simple web service for testing WebHooks (HTTP POST requests).
 Quick Start
 -----------
 
-    $ gem install postbin
+    $ gem install postbin thin
     $ postbin
     == Starting PostBin on http://127.0.0.1:6969
     == Sinatra/1.3.1 has taken the stage on 6969 for development with backup from Thin
