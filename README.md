@@ -4,13 +4,15 @@ PostBin, a simple web service for testing WebHooks (HTTP POST requests).
 
 ## Quick Start: Stand Alone
 
-    $ gem install postbin
-    $ postbin
-    == Starting PostBin on http://127.0.0.1:6969
-    == Sinatra/1.3.1 has taken the stage on 6969 for development with backup from Thin
-    >> Thin web server (v1.2.11 codename Bat-Shit Crazy)
-    >> Maximum connections set to 1024
-    >> Listening on 127.0.0.1:6969, CTRL+C to stop
+```shell
+$ gem install postbin
+$ postbin
+== Starting PostBin on http://127.0.0.1:6969
+== Sinatra/1.3.1 has taken the stage on 6969 for development with backup from Thin
+>> Thin web server (v1.2.11 codename Bat-Shit Crazy)
+>> Maximum connections set to 1024
+>> Listening on 127.0.0.1:6969, CTRL+C to stop
+```
 
 When running postbin from the command line, requests are stored in a temporary
 file database, they will be lost once the server terminates.
@@ -23,6 +25,8 @@ curl --header "Content-Type: application/json" \
   --data '{"foo":"bar", "hello":"world", "number": 42}' \
   http://127.0.0.1:6969/my/fake/path
 ```
+
+Rar
 
 ## Quick Start: Rack Application
 
