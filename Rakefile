@@ -3,7 +3,7 @@ require 'rake/testtask'
 require 'rubygems/tasks'
 
 # by default run unit tests.
-task :default => 'test:unit'
+task :default => 'test'
 
 # unit tests.
 Rake::TestTask.new(:test) do |task|
