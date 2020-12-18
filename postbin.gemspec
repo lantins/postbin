@@ -8,13 +8,11 @@ spec = Gem::Specification.new do |s|
   s.homepage            = 'https://github.com/lantins/postbin'
   s.authors             = ['Luke Antins']
   s.email               = ['luke@lividpenguin.com']
-  s.has_rdoc            = false
 
   s.files               = %w(Rakefile README.md HISTORY.md Gemfile postbin.gemspec)
   s.files              += Dir.glob('{test/**/*,lib/**/*}')
   s.require_paths       = ['lib']
   s.executables         = ['postbin']
-  s.default_executable  = 'postbin'
 
   s.add_dependency('sinatra')
   s.add_dependency('multi_json')
