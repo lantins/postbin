@@ -1,5 +1,6 @@
 require 'rubygems' unless defined?(Gem)
 require 'rake/testtask'
+require 'rubygems/tasks'
 
 # by default run unit tests.
 task :default => 'test:unit'
@@ -12,3 +13,8 @@ namespace :test do
     task.verbose = true
   end
 end
+
+# gem build/relase tasks
+Gem::Tasks.new(
+  build: {gem: true},
+)
