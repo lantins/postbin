@@ -1,3 +1,5 @@
+.bundle/
 coverage/
 Gemfile.lock
 pkg/*
+postbin-*.gem
