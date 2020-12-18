@@ -64,6 +64,17 @@ Local development/testing is handled by `rake` tasks for the most part:
 ```shell
 # list available `rake` task
 rake -T
+# build and install gem
+rake install
+```
+
+If you wish to build/test a set of uncommited changes:
+
+```shell
+# build gem
+gem build postbin.gemspec
+# install gem (adjust as needed)
+gem install postbin-<VERSION>.gem
 ```
 
 ## Release Instructions
