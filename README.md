@@ -46,6 +46,15 @@ You can run a more permeant install by running PostBin as a Rack application:
 
 ---
 
+## Quick Start: Local Development
+
+Local development/testing is handled by `rake` tasks for the most part:
+
+```shell
+# list available `rake` task
+rake -T
+```
+
 ## Release Instructions
 
 1. Bump the version number found in `lib/postbin/version.rb`.
