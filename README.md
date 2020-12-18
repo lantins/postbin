@@ -1,6 +1,7 @@
 # PostBin
 
-PostBin, a simple web service for testing WebHooks (HTTP POST requests).
+PostBin, a simple web service for testing and logging of the receival of WebHooks
+(HTTP POST requests).
 
 ## Quick Start: Stand Alone
 
