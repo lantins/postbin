@@ -12,7 +12,7 @@ module PostBin
 
     # Redirect lost users.
     get '/?' do;         redirect '/postbin/overview'; end
-    get '/postbin/?' do;  redirect '/postbin/overview'; end
+    get '/postbin/?' do; redirect '/postbin/overview'; end
 
     # Display main overview.
     get '/postbin/overview' do

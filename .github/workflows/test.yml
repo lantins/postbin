@@ -1,0 +1,30 @@
+name: Ruby
+
+on:
+  push:
+    branches: [ $default-branch ]
+  pull_request:
+    branches: [ $default-branch ]
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        ruby-version: [2.7.x, 2.6.x, 2.5.x]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - run: source /etc/environment
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+
+    - name: Install dependencies
+      run: bundle install
+
+    - name: Run tests
+      run: bundle exec rake
