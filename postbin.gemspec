@@ -3,6 +3,7 @@ require './lib/postbin/version'
 spec = Gem::Specification.new do |s|
   s.name                = 'postbin'
   s.version             = PostBin::Version
+  s.licenses            = 'MIT'
   s.date                = Time.now.strftime('%Y-%m-%d')
   s.summary             = 'PostBin, a simple web service for testing WebHooks (HTTP POST requests).'
   s.homepage            = 'https://github.com/lantins/postbin'
