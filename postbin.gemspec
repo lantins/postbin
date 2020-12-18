@@ -19,12 +19,12 @@ spec = Gem::Specification.new do |s|
   s.add_dependency('multi_json', '~> 1.0')
   s.add_dependency('json', '~> 2.0')
   s.add_dependency('thin', '~> 1')
-  s.add_development_dependency('rake', '~> 0')
-  s.add_development_dependency('yard', '~> 0')
-  s.add_development_dependency('minitest', '~> 0')
-  s.add_development_dependency('rack-test', '~> 0')
-  s.add_development_dependency('bundler', '~> 0')
-  s.add_development_dependency('rubygems-tasks', '~> 0')
+  s.add_development_dependency('rake', '~> 13.0')
+  s.add_development_dependency('yard', '~> 0.9')
+  s.add_development_dependency('minitest', '~> 5.14')
+  s.add_development_dependency('rack-test', '~> 1.1')
+  s.add_development_dependency('bundler', '~> 2.1')
+  s.add_development_dependency('rubygems-tasks', '~> 0.2')
 
   s.description       = <<-EOL
   A ruby command line/rack application for testing systems that send WebHooks
