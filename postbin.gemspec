@@ -15,16 +15,16 @@ spec = Gem::Specification.new do |s|
   s.require_paths       = ['lib']
   s.executables         = ['postbin']
 
-  s.add_dependency('sinatra')
-  s.add_dependency('multi_json')
-  s.add_dependency('json')
-  s.add_dependency('thin')
-  s.add_development_dependency('rake')
-  s.add_development_dependency('yard')
-  s.add_development_dependency('minitest')
-  s.add_development_dependency('rack-test')
-  s.add_development_dependency('bundler')
-  s.add_development_dependency('rubygems-tasks')
+  s.add_dependency('sinatra', '~> 2.0')
+  s.add_dependency('multi_json', '~> 1.0')
+  s.add_dependency('json', '~> 2.0')
+  s.add_dependency('thin', '~> 1')
+  s.add_development_dependency('rake', '~> 0')
+  s.add_development_dependency('yard', '~> 0')
+  s.add_development_dependency('minitest', '~> 0')
+  s.add_development_dependency('rack-test', '~> 0')
+  s.add_development_dependency('bundler', '~> 0')
+  s.add_development_dependency('rubygems-tasks', '~> 0')
 
   s.description       = <<-EOL
   A ruby command line/rack application for testing systems that send WebHooks
