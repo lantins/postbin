@@ -1,11 +1,6 @@
 name: Ruby
 
-on:
-  push:
-    branches: [ $default-branch ]
-  pull_request:
-    branches: [ $default-branch ]
-  workflow_dispatch:
+on: [push, branches, workflow_dispatch]
 
 jobs:
   test:
