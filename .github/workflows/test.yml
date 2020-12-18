@@ -18,8 +18,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - run: source /etc/environment
-
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
 
