@@ -15,33 +15,44 @@ PostBin, a simple web service for testing WebHooks (HTTP POST requests).
 When running postbin from the command line, requests are stored in a temporary
 file database, they will be lost once the server terminates.
 
+You can then submit a basic POST request using `curl` as follows:
+
+```shell
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"foo":"bar", "hello":"world", "number": 42}' \
+  http://127.0.0.1:6969/my/fake/path
+```
+
 ## Quick Start: Rack Application
 
 You can run a more permeant install by running PostBin as a Rack application:
 
-    # example config.ru
-    require 'postbin'
+```ruby
+# example config.ru
+require 'postbin'
 
-    # path of pstore file to use for storage.
-    pstore = File.expand_path(File.join(File.dirname(__FILE__), 'postbin.pstore'))
+# path of pstore file to use for storage.
+pstore = File.expand_path(File.join(File.dirname(__FILE__), 'postbin.pstore'))
 
-    # start the server.
-    PostBin::Server.set :pstore_file, pstore
-    run PostBin::Server.new(pstore)
+# start the server.
+PostBin::Server.set :pstore_file, pstore
+run PostBin::Server.new(pstore)
+```
 
 ## Command Line Options
 
 ```text
-    Usage: postbin [options]
+Usage: postbin [options]
 
-    PostBin options:
-      -v, --version            show version number
-      -h, --help               show this message
+PostBin options:
+  -v, --version            show version number
+  -h, --help               show this message
 
-    Rack options:
-      -s, --server SERVER      server (webrick, mongrel, thin, etc.)
-      -a, --address HOST       listen on HOST address (default: 127.0.0.1)
-      -p, --port PORT          use PORT number (default: 6969)
+Rack options:
+  -s, --server SERVER      server (webrick, mongrel, thin, etc.)
+  -a, --address HOST       listen on HOST address (default: 127.0.0.1)
+  -p, --port PORT          use PORT number (default: 6969)
 ```
 
 ---
