@@ -25,6 +25,7 @@ spec = Gem::Specification.new do |s|
   s.add_development_dependency('minitest')
   s.add_development_dependency('rack-test')
   s.add_development_dependency('bundler')
+  s.add_development_dependency('rubygems-tasks')
 
   s.description       = <<-EOL
   A ruby command line/rack application for testing systems that send WebHooks
